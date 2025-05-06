@@ -57,3 +57,48 @@ var jsonKeyList = ['123/abc/234', '789/oiu/908', '899/kjk/098'];
 
 var result = compareValueLists(dbList, jsonKeyList);
 console.log(result);
+
+//Testcases:
+var dbList = ['123/abc/234', '899/kjk/098'];
+var jsonKeyList = ['123/abc/234', '789/oiu/908', '899/kjk/098', '456/xyz/789', '333/mmm/111'];
+
+var result = compareValueLists(dbList, jsonKeyList);
+console.log(result);
+
+var dbList = ['123/abc/234', '231/sdf/123', '899/kjk/098', '456/xyz/789', '333/mmm/111'];
+var jsonKeyList = ['123/abc/234', '899/kjk/098'];
+
+var result = compareValueLists(dbList, jsonKeyList);
+console.log(result);
+
+
+var dbList = [];
+var jsonKeyList = ['123/abc/234', '789/oiu/908', '899/kjk/098'];
+
+var result = compareValueLists(dbList, jsonKeyList);
+console.log(result);
+
+var dbList = ['123/abc/234', '231/sdf/123', '899/kjk/098'];
+var jsonKeyList = [];
+
+var result = compareValueLists(dbList, jsonKeyList);
+console.log(result);
+
+
+var dbList = ['123/abc/234', '231/sdf/123', '899/kjk/098'];
+var jsonKeyList = ['456/xyz/789', '789/oiu/908', '333/mmm/111'];
+
+var result = compareValueLists(dbList, jsonKeyList);
+console.log(result);
+
+var dbList = ['123/abc/234', '231/sdf/123', '899/kjk/098'];
+var jsonKeyList = ['123/abc/234', '231/sdf/123', '899/kjk/098'];
+
+var result = compareValueLists(dbList, jsonKeyList);
+console.log(result);
+
+var dbList = ['123/abc/234', '231/sdf/123', '899/kjk/098', '231/sdf/123'];
+var jsonKeyList = ['123/abc/234', '789/oiu/908', '899/kjk/098', '789/oiu/908'];
+
+var result = compareValueLists(dbList, jsonKeyList);
+console.log(result);
