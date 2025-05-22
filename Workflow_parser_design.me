@@ -1,0 +1,120 @@
+In ServiceNow, there are several ways to track where a workflow is being called from. Here are the main approaches:
+1. Workflow Context Records
+Check the Workflow Context (wf_context) table:
+
+Navigate to System Definition > Workflow > Live Workflows
+Look for your specific workflow instances
+The context record shows the calling table, record, and trigger details
+
+2. Business Rules Analysis
+
+Go to System Definition > Business Rules
+Search for business rules that reference your workflow
+Look in the script fields for calls like:
+
+workflow.startFlow('your_workflow_id', current, current.operation());
+
+3. Script Includes and Other Server Scripts
+Search across different script types:
+
+System Definition > Script Includes
+System UI > UI Actions
+System Definition > Scheduled Jobs
+Look for workflow.startFlow() or Workflow.start() calls
+
+4. REST API and Web Services
+
+Check System Web Services > REST API Explorer
+Review any custom REST endpoints that might trigger workflows
+Look at System Web Services > Scripted REST APIs
+
+5. Using ServiceNow's Global Search
+
+Go to System Definition > Tables & Columns
+Use the global search to find references to your workflow ID across all scripts
+Search for your workflow's sys_id in the codebase
+
+Workflow Activities Log
+
+Navigate to Workflow > Workflow Activities
+Filter by your workflow to see execution history
+Check the "Started by" and "Context" fields
+
+7. Application Cross-Reference
+
+Use System Definition > Application Cross Reference
+Search for your workflow to see all dependencies and references
+
+Would you like me to elaborate on any of these methods or help you investigate a specific workflow?
+
+
+
+1. Business Rules
+
+Table: sys_script
+Location: System Definition > Business Rules
+Fields to check: script, condition, filter_condition
+Search for: workflow.startFlow(), Workflow.start(), workflow sys_ids
+
+2. Script Includes
+
+Table: sys_script_include
+Location: System Definition > Script Includes
+Fields to check: script
+
+3. UI Actions
+
+Table: sys_ui_action
+Location: System UI > UI Actions
+Fields to check: script, condition
+
+4. Client Scripts
+
+Table: sys_script_client
+Location: System Definition > Client Scripts
+Fields to check: script
+
+5. UI Policies
+
+Table: sys_ui_policy
+Location: System UI > UI Policies
+Fields to check: Script fields in related sys_ui_policy_action table
+
+6. Scheduled Jobs
+
+Table: sysauto_script
+Location: System Definition > Scheduled Jobs
+Fields to check: script
+
+7. Transform Maps
+
+Table: sys_transform_script
+Location: System Import Sets > Transform Maps
+Fields to check: script
+
+8. Workflow Context (Runtime Data)
+
+Table: wf_context
+Location: Workflow > Live Workflows
+Shows: Active workflow instances and their calling context
+
+9. REST APIs
+
+Table: sys_ws_operation (for Scripted REST APIs)
+Location: System Web Services > Scripted REST APIs
+Fields to check: operation_script
+
+10. Email Scripts
+
+Table: sysevent_email_action
+Location: System Policy > Events > Email Notifications
+Fields to check: message_html, message_text, script
+
+Quick Database Query Approach:
+You can run queries directly on these tables to find workflow references:
+sql-- Example for business rules
+SELECT sys_id, name, table, script 
+FROM sys_script 
+WHERE script LIKE '%your_workflow_name%' 
+   OR script LIKE '%workflow_sys_id%'
+Would you like me to help you write specific queries for any of these tables?RetryClaude can make mistakes. Please double-check responses.
